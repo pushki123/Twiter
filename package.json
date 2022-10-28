@@ -1,0 +1,23 @@
+{
+  "name": "twitter_app",
+  "version": "1.0.0",
+  "description": "Twitter Project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pushki123/Twiter.git"
+  },
+  "author": "Pushkraj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pushki123/Twiter/issues"
+  },
+  "homepage": "https://github.com/pushki123/Twiter#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
