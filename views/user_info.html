@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .inp {
+            margin: 20px auto;
+            font-size: 18px;
+            width: 92%;
+            display: block;
+            padding: 15px 10px;
+            background-color: whitesmoke;
+            border: 1px solid rgb(211, 211, 211);
+        }
+        
+        .main {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 500px;
+            padding: 20px;
+            border: 1px solid rgb(159, 159, 159);
+            box-shadow: 0px 0px 15px #afafaf;
+            margin-top: 140px;
+        }
+        
+        .procced {
+            border: 1px solid #3498db;
+            background: none;
+            padding: 10px 20px;
+            font-size: 20px;
+            font-family: "montserret";
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.6s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .procced:hover {
+            color: #fff;
+            background: #3498db;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <input type="text" class="inp" id="name" placeholder="name">
+        <input type="text" class="inp" id="birthday" placeholder="Birth date">
+        <input type="text" class="inp" id="mobile_no" placeholder="Mobile Number">
+        <input type="text" class="inp" id="address" placeholder="Address">
+        <input type="text" class="inp" id="age" placeholder="Age">
+        <input type=" text" class="inp" id="gender" placeholder="Gender">
+        <div>
+            <button id="procced" class="procced" onclick="add_info()">Procced</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="/config.js">
+    </script>
+    <script>
+        // TODO: Replace the following with your app's Firebase project configuration
+        // See: https://firebase.google.com/docs/web/learn-more#config-object
+
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+
+        // Initialize Cloud Firestore and get a reference to the service
+        const db = firebase.firestore();
+
+        function add_info() {
+            var name = document.getElementById("name")
+            var mobile = document.getElementById("mobile_no")
+            var birthday = document.getElementById("birthday")
+            var address = document.getElementById("address")
+            var age = document.getElementById("age")
+            var gender = document.getElementById("gender")
+
+            db.collection("users").add({
+                    name: name.value,
+                    mobile_no: mobile.value,
+                    birthday: birthday.value,
+                    age: age.value,
+                    gender: gender.value,
+                    address: address.value
+                })
+                .then((docRef) => {
+                    console.log("Document written with ID: ", docRef.id);
+                })
+                .catch((error) => {
+                    console.error("Error adding document: ", error);
+                });
+
+        }
+    </script>
+</body>
+
+</html>

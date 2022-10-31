@@ -65,19 +65,39 @@
         }
         
         .procced {
+            border: 1px solid #3498db;
+            background: none;
+            padding: 10px 20px;
             font-size: 20px;
-            background-color: rgb(18, 196, 24);
-            font-weight: 700;
-            color: white;
-            margin: 5px;
+            font-family: "montserret";
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .procced:hover {
+            color: #fff;
+            background: #3498db;
         }
         
         .procced1 {
+            border: 1px solid #47c224;
+            background: none;
+            padding: 10px 20px;
             font-size: 20px;
-            background-color: rgb(32, 153, 214);
-            font-weight: 700;
-            color: white;
-            margin: 5px;
+            font-family: "montserret";
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .procced1:hover {
+            color: #fff;
+            background: #47c224;
         }
     </style>
 </head>
@@ -127,7 +147,14 @@
         username = document.getElementById("username");
 
         const firebaseConfig = {
-
+            apiKey: "AIzaSyCnvV9BQSiMgdGTdCttBX0fLWVEkDJp_6M",
+            authDomain: "traning-5c90e.firebaseapp.com",
+            databaseURL: "https://traning-5c90e-default-rtdb.firebaseio.com",
+            projectId: "traning-5c90e",
+            storageBucket: "traning-5c90e.appspot.com",
+            messagingSenderId: "60551713961",
+            appId: "1:60551713961:web:79b1054ac1d5ea328305b8",
+            measurementId: "G-TTG0PL6Y9Y"
         };
 
         firebase.initializeApp(firebaseConfig);
@@ -140,6 +167,7 @@
                 .createUserWithEmailAndPassword(email.value, password.value)
                 .then((uid) => {
                     console.log("success fully signed up")
+
                 })
                 .catch((error) => {
                     var errorCode = error.code;
@@ -154,6 +182,8 @@
                 .then((uid) => {
                     var user = uid.user;
                     console.log("Logged in")
+                    window.location.href = "/user_info";
+
                 }).catch((error) => {
                     var errorCode = error.code;
                     var errorMessage = error.message;
