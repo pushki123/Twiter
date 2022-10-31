@@ -1,13 +1,13 @@
-const { response } = require("express");
 var express = require("express");
 var app = express();
-const path = require('path');
+const PORT = 3000;
 
-app.get("/views/login.HTML", function (request, response) {
-  console.log("in login rouye");
-  response.sendFile("/views/login.HTML", { root: __dirname });
+app.get("/login", function (request, response) {
+  // console.log(request)
+  console.log("in login route");
+  response.sendFile("views/login.html", {root:__dirname});
 });
 
-app.listen(3000, function () {
-  console.log("listening on port 3000");
+app.listen(PORT, function () {
+  console.log(`listening on port ${PORT}`);
 });
