@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .c_name {
+            font-size: larger;
+            font-weight: 600;
+            color: white;
+            background-color: teal;
+            border-radius: 5px;
+            width: fit-content;
+        }
+        
+        .tweet_box {
+            border: 1px solid black;
+            width: 500px;
+            text-align: center;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        
+        .display_1 {
+            background-color: blue;
+            border: 1px solid white;
+        }
+        
+        .well_box {
+            /* margin-left: auto;
+            margin-right: auto; */
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .left_sidebody {
+            display: inline-block;
+            /* float: left; */
+            width: 33%;
+            height: 100000px;
+            margin-top: 0px;
+        }
+        
+        .main_body {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="left_sidebody">
+        <div>
+            <div class="c_name">
+                TWITTER
+
+            </div>
+            <div>
+                <img src="/image/Twitterlogo.png" alt="" style="height: auto; width: 100%;">
+            </div>
+
+        </div>
+    </div>
+    <div class="main_body">
+        <div class="nav-bar">
+
+
+            <!-- <div>
+                <img src="/image/download.svg" alt="/image/download.svg">
+            </div> -->
+        </div>
+
+        <div id="well_box" class="well_box">
+            HI,Good to see you back <span id="usn"></span>
+        </div>
+
+        <div class="tweet_box" id="tweet_box">
+            <input type="text" name="" id="u_name" style="display: block;margin-left: auto;margin-right: auto;">
+            <textarea name="" id="u_tweet" cols="30" rows="10" style="margin-left: auto;margin-right: auto;"></textarea>
+            <button class="btn1" onclick="add_tweet()">Add tweet</button>
+            <div id="display_1" class="display_1">
+                <div id="dis_name" class="dis_name">euuu</div>
+                <div id="dis_tweet" class="dis_tweet">yeeet</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="">
+
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script>
+        // TODO: Replace the following with your app's Firebase project configuration
+        // See: https://firebase.google.com/docs/web/learn-more#config-object
+        const firebaseConfig = {
+            apiKey: "AIzaSyCnvV9BQSiMgdGTdCttBX0fLWVEkDJp_6M",
+            authDomain: "traning-5c90e.firebaseapp.com",
+            databaseURL: "https://traning-5c90e-default-rtdb.firebaseio.com",
+            projectId: "traning-5c90e",
+            storageBucket: "traning-5c90e.appspot.com",
+            messagingSenderId: "60551713961",
+            appId: "1:60551713961:web:79b1054ac1d5ea328305b8",
+            measurementId: "G-TTG0PL6Y9Y"
+        };
+
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+
+        // Initialize Cloud Firestore and get a reference to the service
+        const db = firebase.firestore();
+
+        function add_tweet() {
+            var name = document.getElementById("u_name")
+            var tweet = document.getElementById("u_tweet")
+            var date = Date.now() / 1000 * 60;
+            var stweet = document.getElementById('dis_tweet')
+            var atweet = document.getElementById("display_1")
+
+
+            db.collection("Tweets").add({
+                    name: name.value,
+                    tweet: tweet.value,
+                    date: date
+
+                })
+                .then((docRef) => {
+                    console.log("Document written with ID: ", docRef.id);
+
+                })
+                .catch((error) => {
+                    console.error("Error adding document: ", error);
+                });
+
+        }
+        db.collection("Tweets")
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    console.log(`${doc.id} => ${doc.data().name}, ${doc.data().tweet}, ${doc.data().date}`);
+                    var S_T = doc.data().tweet
+                    var S_N = doc.data().name
+                    get_tweets(S_T, S_N);
+                });
+            });
+
+        function get_tweets(S_N, S_T) {
+            var z = document.getElementById("display_1")
+            var s_name = document.createElement('div')
+            var s_tweet = document.createElement('div')
+                // s_name.setAttribute("style", "border: 1px solid white; margin-bottom:10px")
+            s_name.setAttribute("style", "border: 1px solid white; margin: 10px 0 0 0;color:white")
+            z.setAttribute("style", "border: 1px solid white;color: white")
+            s_name.innerHTML = S_N
+            s_tweet.innerHTML = S_T
+            z.appendChild(s_name)
+            s_name.appendChild(s_tweet)
+
+        }
+    </script>
+
+</body>
+
+</html>

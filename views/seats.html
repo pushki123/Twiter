@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .seat_ {
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            margin: 5px 5px 5px;
+            background-color: green;
+            /* text-align: center; */
+            padding: 25px 25px 0 25px;
+        }
+        
+        .slot_c:hover {
+            background-color: red;
+        }
+        
+        .screen {
+            height: 20px;
+            width: 600px;
+            background-color: black;
+            align-self: center;
+            margin-left: 200px;
+            margin-bottom: 20px;
+            color: aliceblue;
+        }
+        
+        .m_btn {
+            margin: 10px;
+            font-size: 20px;
+            padding: 10px;
+            font-weight: bold;
+            background-color: violet;
+            border: 1px solid blue;
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main_div" style="width: 1000px; text-align: center ; margin-left: auto;margin-right: auto;border: 2px solid black;">
+        <div class="screen">SCREEN </div>
+        <!-- <div class="seat_ " onclick="style.backgroundColor='red';"> 1</div>
+        <div class=" seat_" onclick="style.backgroundColor='red';">2</div>
+        <div class=" seat_" onclick="style.backgroundColor='red';">3</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">4</div>
+        <div class=" seat_" onclick="style.backgroundColor='red';">5</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">6</div>
+        <div class=" seat_" onclick="style.backgroundColor='red';">7</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">8</div>
+        <div class=" seat_" onclick="style.backgroundColor='red';">9</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">10</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">11</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">12</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">13</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">14</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">15</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">16</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">17</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">18</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">19</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">20</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">21</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">22</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">23</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">24</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">25</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">26</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">27</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">28</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">29</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">30</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">31</div>
+        <div class="seat_ " onclick="style.backgroundColor='red';">32</div> -->
+        <div>
+            <button onclick="create_div()" class="m_btn">proceed to book</button>
+        </div>
+        <div>
+            <button onclick="procced()" class="m_btn">Procced</button>
+        </div>
+        <div>
+            <button onclick="add_val()" class="m_btn">function asaas</button>
+        </div>
+        <input type="text" name="" id="no_b">
+        <div id="booked_s"></div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script>
+        // TODO: Replace the following with your app's Firebase project configuration
+        // See: https://firebase.google.com/docs/web/learn-more#config-object
+        const firebaseConfig = {
+            apiKey: "AIzaSyCnvV9BQSiMgdGTdCttBX0fLWVEkDJp_6M",
+            authDomain: "traning-5c90e.firebaseapp.com",
+            databaseURL: "https://traning-5c90e-default-rtdb.firebaseio.com",
+            projectId: "traning-5c90e",
+            storageBucket: "traning-5c90e.appspot.com",
+            messagingSenderId: "60551713961",
+            appId: "1:60551713961:web:79b1054ac1d5ea328305b8",
+            measurementId: "G-TTG0PL6Y9Y"
+        };
+
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+
+        // Initialize Cloud Firestore and get a reference to the service
+        const db = firebase.firestore();
+        // var div1 = document.createElement('div')
+        // div1.innerText = "qwe "
+        // div1.setAttribute("style ", "color : red ")
+        // div1.setAttribute("wee ", "my arse ")
+
+        // div1.innerHTML = `<div style="width:100px; background-color:blue "> my name is andy </div>`
+
+        // console.log(div1)
+        // var mdiv = document.getElementById("main_div ")
+        // mdiv.appendChild(div1)
+        // document.body.appendChild(div1)
+        var x = document.getElementById("no_b")
+
+        var mdiv = document.getElementById("main_div")
+        var no_c = 0
+
+        function create_div() {
+            for (let y = 1; y <= x.value; y++) {
+                var slot_c = document.createElement('div')
+                slot_c.setAttribute("id", `id-${y}`)
+                slot_c.setAttribute("style", "background-color: green;; width : 50px ;height : 50px; display : inline-block; margin: 5px 5px 5px; padding: 25px 25px 0 25px;")
+                slot_c.setAttribute("onclick", `print_id("id-${y}")`)
+                    // slot_c.setAttribute("onclick", `add_arr("id-${y}")`)
+                slot_c.innerHTML = `id${y}`
+                mdiv.appendChild(slot_c)
+            }
+
+        }
+        var s = [];
+
+        function print_id(arg) {
+            var x = document.getElementById(arg)
+            var i = document.getElementById("booked_s")
+            console.log("in functin")
+            console.log("My id is :", arg)
+            if (x.style.backgroundColor == "red") {
+                x.setAttribute("style", "background-color: green; width : 50px ;height : 50px; display : inline-block; margin: 5px 5px 5px; padding: 25px 25px 0 25px;")
+                s.pop(arg)
+                console.log("fail")
+                db.collection("reservation").doc(this).delete().then(() => {
+                    console.log("Document successfully deleted!");
+                }).catch((error) => {
+                    console.error("Error removing document: ", error);
+                });
+            } else {
+                x.setAttribute("style", "background-color: red; width : 50px ;height : 50px; display : inline-block; margin: 5px 5px 5px; padding: 25px 25px 0 25px;")
+                s.push(arg)
+                console.log("success")
+                console.log(s)
+            }
+            // console.log("My color :", x.style.backgroundColor)
+            // var slot = document.getElementById('slot_c')
+            // arg.setAttribute("style", "background-color : red ")
+            console.log(s)
+            console.log(s.length)
+        }
+
+        function procced() {
+            var x = s.length
+            for (let i = 0; i < x; i++) {
+
+                db.collection("Reservation").add({
+                        Seat_n: s[i]
+                    })
+                    .then((docRef) => {
+                        console.log("Document written with ID: ", docRef.id);
+                        no_c++
+                        // console.log(no_c)
+                    })
+                    .catch((error) => {
+                        console.error("Error adding document: ", error);
+                    });
+
+            }
+
+        }
+
+        // var q = 0
+        function mark_seat() {
+            console.log("3")
+            console.log("inside msark ")
+            db.collection("Reservation")
+                .get()
+                .then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        let S_S = doc.data().Seat_n;
+                        getseat(S_S);
+                        // console.log("qw", S_S)
+                    });
+                });
+
+        }
+        // var docRef = db.collection("Reservation").doc("juKuAL269o3o1NveYCMn");
+
+        // db.collection("Reservation").doc("juKuAL269o3o1NveYCMn").get().then((doc) => {
+        //     if (doc.exists) {
+        //         console.log("Document data:", doc.data());
+        //     } else {
+        //         // doc.data() will be undefined in this case
+        //         console.log("No such document!");
+        //     }
+        // }).catch((error) => {
+        //     console.log("Error getting document:", error);
+        // });
+
+        function getseat(S_S) {
+            // for (let q = 0; q < p; q++) {
+
+            var t = document.getElementById('main_div')
+            var c = document.getElementById(S_S)
+            var sbooked_s = document.createElement('div')
+            sbooked_s.setAttribute("style", "background-color : blue; color:white;")
+            c.setAttribute("style", "background-color: red;; width : 50px ;height : 50px; display : inline-block; margin: 5px 5px 5px; padding: 25px 25px 0 25px;")
+            sbooked_s.innerHTML = S_S
+
+            // c.setAttribute("style", "background-color : red")
+            t.appendChild(sbooked_s)
+                // console.log(q)
+                // var p = 1
+                // }
+        }
+
+        (async() => {
+            console.log("1")
+            await setTimeout(mark_seat, 10000)
+            console.log("2")
+        })();
+
+        d1 = {
+            val1: 12,
+            val2: 13
+        }
+        console.log(JSON.stringify(d1))
+
+        async function add_val() {
+
+            res = await fetch('http://www.omdbapi.com/?apikey=fd0385e9&t=X-men')
+            var q = document.getElementById("main_div")
+            var z = document.createElement('img')
+            final = await res.text()
+            console.log(final)
+            console.log(typeof(final))
+
+            final = JSON.parse(final)
+
+            console.log(final)
+            console.log(typeof(final))
+            console.log(final.Poster)
+            z.setAttribute("src", `${final.Poster}`);
+            q.appendChild(z);
+
+        }
+    </script>
+
+</body>
+
+</html>
+
+</html>

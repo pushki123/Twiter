@@ -21,7 +21,7 @@
             text-align: center;
             margin-left: auto;
             margin-right: auto;
-            max-width: 500px;
+            max-width: 1000px;
             padding: 20px;
             border: 1px solid rgb(159, 159, 159);
             box-shadow: 0px 0px 15px #afafaf;
@@ -45,10 +45,24 @@
             color: #fff;
             background: #3498db;
         }
+        
+        .gender {
+            /* margin-left: auto; */
+            /* margin-right: auto; */
+            width: fit-content;
+        }
+        
+        .female_icon {
+            /* width: fit-content;
+            height: fit-content; */
+            size: 16px;
+        }
     </style>
 </head>
 
 <body>
+    <div><img src="/image/female_image.jpg" alt="" style="height: 100px; width: 100px;"></div>
+
     <div class="main">
         <input type="text" class="inp" id="name" placeholder="name">
         <input type="text" class="inp" id="birthday" placeholder="Birth date">
@@ -56,22 +70,37 @@
         <input type="text" class="inp" id="address" placeholder="Address">
         <input type="text" class="inp" id="age" placeholder="Age">
         <input type=" text" class="inp" id="gender" placeholder="Gender">
+        <div class="gender" id="gender">
+            <!-- <img src="/image/female_image.jpg" id="female_icon" class="female_icon" width="200px" height="120px"> -->
+            <img src="/image/female_image.jpg" alt="">
+            <img src="/image/male_profilereal.png" id="male_icon" class="male_icon">
+        </div>
         <div>
             <button id="procced" class="procced" onclick="add_info()">Procced</button>
         </div>
     </div>
+    <!-- <div class="gender" id="gender">
+        <img src="/image/female_image.jpg" alt="" id="female_icon" class="female_icon">
+        <img src="/image/male_profile.jpg" alt="" id="male_icon" class="male_icon">
+    </div> -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script src="/config.js">
-    </script>
     <script>
         // TODO: Replace the following with your app's Firebase project configuration
         // See: https://firebase.google.com/docs/web/learn-more#config-object
-
+        const firebaseConfig = {
+            apiKey: "AIzaSyCnvV9BQSiMgdGTdCttBX0fLWVEkDJp_6M",
+            authDomain: "traning-5c90e.firebaseapp.com",
+            databaseURL: "https://traning-5c90e-default-rtdb.firebaseio.com",
+            projectId: "traning-5c90e",
+            storageBucket: "traning-5c90e.appspot.com",
+            messagingSenderId: "60551713961",
+            appId: "1:60551713961:web:79b1054ac1d5ea328305b8",
+            measurementId: "G-TTG0PL6Y9Y"
+        };
 
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
-
 
         // Initialize Cloud Firestore and get a reference to the service
         const db = firebase.firestore();
@@ -94,12 +123,15 @@
                 })
                 .then((docRef) => {
                     console.log("Document written with ID: ", docRef.id);
+                    window.location.href = "/twitter.html";
                 })
                 .catch((error) => {
                     console.error("Error adding document: ", error);
                 });
 
         }
+        var u = document.getElementById("female_icon")
+        console.log(u)
     </script>
 </body>
 
